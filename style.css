@@ -1,0 +1,165 @@
+/* ============================================================
+   Coffee Shop – shared styles
+   ============================================================ */
+
+:root {
+    --coffee-dark: #2d1b12;
+    --coffee-mid: #6f4e37;
+    --coffee-light: #d9a066;
+    --cream: #fff8ef;
+    --mint: #74d3ae;
+}
+
+/* ----- Base ------------------------------------------------- */
+body {
+    min-height: 100vh;
+    background:
+        radial-gradient(circle at 15% 20%, rgba(116, 211, 174, 0.25), transparent 35%),
+        radial-gradient(circle at 85% 10%, rgba(217, 160, 102, 0.30), transparent 35%),
+        linear-gradient(130deg, #2d1b12 0%, #593728 45%, #7d4f37 100%);
+    color: var(--cream);
+    font-family: "Trebuchet MS", "Segoe UI", sans-serif;
+}
+
+/* ----- Typography ------------------------------------------- */
+.hero-title,
+.page-title {
+    letter-spacing: 0.08rem;
+    text-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+    animation: fadeInDown 0.8s ease;
+}
+
+/* ----- Form card (index.html) ------------------------------- */
+.form-card {
+    background: rgba(255, 248, 239, 0.97);
+    border: 2px solid rgba(255, 255, 255, 0.2);
+    border-radius: 1.2rem;
+    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.35);
+    animation: fadeInUp 0.9s ease;
+}
+
+.form-label,
+.card-subtitle {
+    color: var(--coffee-dark);
+}
+
+.form-control,
+.form-select {
+    border: 1px solid #d7c0ac;
+    background-color: #fffdf9;
+}
+
+.form-control:focus,
+.form-select:focus {
+    border-color: var(--coffee-light);
+    box-shadow: 0 0 0 0.25rem rgba(217, 160, 102, 0.28);
+}
+
+.btn-coffee {
+    background: linear-gradient(90deg, #6f4e37, #9d6a44);
+    color: #fff;
+    border: none;
+    font-weight: 700;
+    letter-spacing: 0.03rem;
+}
+
+.btn-coffee:hover {
+    background: linear-gradient(90deg, #5f412d, #875a39);
+    color: #fff;
+}
+
+.firebase-note {
+    border-left: 4px solid var(--mint);
+    background: #f0fff8;
+    color: #195f45;
+    font-size: 0.95rem;
+}
+
+/* ----- Table card (grid.html) ------------------------------- */
+.table-card {
+    background: rgba(255, 248, 239, 0.97);
+    border-radius: 1.2rem;
+    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.35);
+    animation: fadeInUp 0.8s ease;
+    overflow: hidden;
+}
+
+.table thead {
+    background: linear-gradient(90deg, var(--coffee-dark), var(--coffee-mid));
+    color: var(--cream);
+}
+
+.table thead th {
+    font-weight: 600;
+    letter-spacing: 0.04rem;
+    border: none;
+    padding: 0.9rem 1rem;
+}
+
+.table tbody tr {
+    color: var(--coffee-dark);
+    transition: background 0.15s;
+}
+
+.table tbody tr:hover {
+    background-color: rgba(217, 160, 102, 0.15);
+}
+
+.table tbody td {
+    vertical-align: middle;
+    padding: 0.75rem 1rem;
+}
+
+.badge-coffee {
+    background: linear-gradient(90deg, var(--coffee-mid), var(--coffee-light));
+    color: #fff;
+    font-size: 0.78rem;
+    padding: 0.35em 0.7em;
+    border-radius: 0.5rem;
+}
+
+.spinner-row td {
+    color: var(--coffee-mid);
+}
+
+.empty-row td {
+    color: #aaa;
+    font-style: italic;
+}
+
+.btn-back {
+    background: rgba(255, 255, 255, 0.15);
+    color: var(--cream);
+    border: 1px solid rgba(255, 255, 255, 0.35);
+    font-weight: 600;
+}
+
+.btn-back:hover {
+    background: rgba(255, 255, 255, 0.25);
+    color: #fff;
+}
+
+/* ----- Animations ------------------------------------------- */
+@keyframes fadeInDown {
+    from {
+        opacity: 0;
+        transform: translateY(-18px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(18px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
