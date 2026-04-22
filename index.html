@@ -1,0 +1,272 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Coffee Shop Registration</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
+    <style>
+        :root {
+            --coffee-dark: #2d1b12;
+            --coffee-mid: #6f4e37;
+            --coffee-light: #d9a066;
+            --cream: #fff8ef;
+            --mint: #74d3ae;
+        }
+
+        body {
+            min-height: 100vh;
+            background:
+                radial-gradient(circle at 15% 20%, rgba(116, 211, 174, 0.25), transparent 35%),
+                radial-gradient(circle at 85% 10%, rgba(217, 160, 102, 0.30), transparent 35%),
+                linear-gradient(130deg, #2d1b12 0%, #593728 45%, #7d4f37 100%);
+            color: var(--cream);
+            font-family: "Trebuchet MS", "Segoe UI", sans-serif;
+        }
+
+        .hero-title {
+            letter-spacing: 0.08rem;
+            text-shadow: 0 4px 20px rgba(0, 0, 0, 0.25);
+            animation: fadeInDown 0.8s ease;
+        }
+
+        .form-card {
+            background: rgba(255, 248, 239, 0.97);
+            border: 2px solid rgba(255, 255, 255, 0.2);
+            border-radius: 1.2rem;
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.35);
+            animation: fadeInUp 0.9s ease;
+        }
+
+        .form-label,
+        .card-subtitle {
+            color: var(--coffee-dark);
+        }
+
+        .form-control,
+        .form-select {
+            border: 1px solid #d7c0ac;
+            background-color: #fffdf9;
+        }
+
+        .form-control:focus,
+        .form-select:focus {
+            border-color: var(--coffee-light);
+            box-shadow: 0 0 0 0.25rem rgba(217, 160, 102, 0.28);
+        }
+
+        .btn-coffee {
+            background: linear-gradient(90deg, #6f4e37, #9d6a44);
+            color: #fff;
+            border: none;
+            font-weight: 700;
+            letter-spacing: 0.03rem;
+        }
+
+        .btn-coffee:hover {
+            background: linear-gradient(90deg, #5f412d, #875a39);
+            color: #fff;
+        }
+
+        .firebase-note {
+            border-left: 4px solid var(--mint);
+            background: #f0fff8;
+            color: #195f45;
+            font-size: 0.95rem;
+        }
+
+        @keyframes fadeInDown {
+            from {
+                opacity: 0;
+                transform: translateY(-18px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(18px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <main class="container py-5">
+        <div class="row justify-content-center">
+            <div class="col-12 col-lg-8">
+                <h1 class="hero-title text-center fw-bold mb-2">COFFEE SHOP REGISTRATION FORM</h1>
+                <p class="text-center mb-4">Join our coffee community and save your registration directly to Firebase.
+                </p>
+
+                <div class="form-card p-4 p-md-5">
+                    <h2 class="h4 card-subtitle mb-1">Customer Details</h2>
+                    <p class="text-muted mb-4">Fill in all required fields and click submit.</p>
+
+                    <form id="registrationForm" novalidate>
+                        <div class="row g-3">
+                            <div class="col-12 col-md-6">
+                                <label for="firstName" class="form-label">First name</label>
+                                <input id="firstName" name="firstName" class="form-control" type="text"
+                                    placeholder="e.g. Anna" required>
+                            </div>
+                            <div class="col-12 col-md-6">
+                                <label for="lastName" class="form-label">Last name</label>
+                                <input id="lastName" name="lastName" class="form-control" type="text"
+                                    placeholder="e.g. Nowak" required>
+                            </div>
+
+                            <div class="col-12">
+                                <label for="address" class="form-label">Address</label>
+                                <textarea id="address" name="address" class="form-control" rows="3"
+                                    placeholder="Street, city, postal code" required></textarea>
+                            </div>
+
+                            <div class="col-12 col-md-4">
+                                <label for="age" class="form-label">Age</label>
+                                <input id="age" name="age" class="form-control" type="number" min="16" max="120"
+                                    placeholder="18" required>
+                            </div>
+
+                            <div class="col-12 col-md-8">
+                                <label for="email" class="form-label">Email address</label>
+                                <input id="email" name="email" class="form-control" type="email"
+                                    placeholder="name@example.com" required>
+                            </div>
+
+                            <div class="col-12">
+                                <label for="favoriteCoffee" class="form-label">Favorite coffee</label>
+                                <select id="favoriteCoffee" name="favoriteCoffee" class="form-select" required>
+                                    <option value="">Choose one...</option>
+                                    <option>Espresso</option>
+                                    <option>Cappuccino</option>
+                                    <option>Latte</option>
+                                    <option>Americano</option>
+                                    <option>Cold Brew</option>
+                                </select>
+                            </div>
+
+                            <div class="col-12">
+                                <label for="notes" class="form-label">Additional notes</label>
+                                <textarea id="notes" name="notes" class="form-control" rows="3"
+                                    placeholder="Anything else we should know?"></textarea>
+                            </div>
+
+                            <div class="col-12">
+                                <div class="form-check">
+                                    <input id="terms" name="terms" class="form-check-input" type="checkbox" required>
+                                    <label class="form-check-label text-dark" for="terms">
+                                        I agree to the terms and conditions.
+                                    </label>
+                                </div>
+                            </div>
+
+                            <div class="col-12 d-grid d-md-flex justify-content-md-center mt-2">
+                                <button id="submitBtn" type="submit" class="btn btn-coffee px-5 py-2">Submit
+                                    Registration</button>
+                            </div>
+                        </div>
+                    </form>
+
+                    <div class="firebase-note p-3 mt-4 rounded">
+                        Firebase is connected through the script below. Replace the placeholder values in
+                        <strong>firebaseConfig</strong> with your own project credentials.
+                    </div>
+
+                    <div id="statusMessage" class="alert d-none mt-3 mb-0" role="alert"></div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI"
+        crossorigin="anonymous"></script>
+
+    <script type="module">
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.5/firebase-app.js";
+        import { getDatabase, ref, push, set, serverTimestamp } from "https://www.gstatic.com/firebasejs/10.12.5/firebase-database.js";
+
+        const firebaseConfig = {
+            apiKey: "AIzaSyDX0GT8W96QJbxY9vlETrAQoQiilqeYonk",
+            authDomain: "mycofeeshop-dfb4a.firebaseapp.com",
+            projectId: "mycofeeshop-dfb4a",
+            databaseURL: "https://mycofeeshop-dfb4a-default-rtdb.europe-west1.firebasedatabase.app/",
+            storageBucket: "mycofeeshop-dfb4a.firebasestorage.app",
+            messagingSenderId: "765547790705",
+            appId: "1:765547790705:web:928385cec58e794e72f6d0"
+        };
+
+        const form = document.getElementById("registrationForm");
+        const submitBtn = document.getElementById("submitBtn");
+        const statusMessage = document.getElementById("statusMessage");
+
+        const app = initializeApp(firebaseConfig);
+        const db = getDatabase(app);
+
+        function showStatus(message, type) {
+            statusMessage.className = `alert alert-${type} mt-3 mb-0`;
+            statusMessage.textContent = message;
+            statusMessage.classList.remove("d-none");
+        }
+
+        function firebaseConfigReady(config) {
+            return Object.values(config).every((value) => value && !String(value).startsWith("YOUR_"));
+        }
+
+        form.addEventListener("submit", async (event) => {
+            event.preventDefault();
+
+            if (!form.checkValidity()) {
+                form.reportValidity();
+                return;
+            }
+
+            if (!firebaseConfigReady(firebaseConfig)) {
+                showStatus("Update firebaseConfig placeholders before submitting.", "warning");
+                return;
+            }
+
+            submitBtn.disabled = true;
+            submitBtn.textContent = "Saving...";
+
+            const formData = new FormData(form);
+            const payload = {
+                firstName: formData.get("firstName"),
+                lastName: formData.get("lastName"),
+                address: formData.get("address"),
+                age: Number(formData.get("age")),
+                email: formData.get("email"),
+                favoriteCoffee: formData.get("favoriteCoffee"),
+                notes: formData.get("notes"),
+                createdAt: serverTimestamp()
+            };
+
+            try {
+                const newRegistrationRef = push(ref(db, "registrations"));
+                await set(newRegistrationRef, payload);
+                showStatus(`Saved successfully. Record ID: ${newRegistrationRef.key}`, "success");
+                form.reset();
+            } catch (error) {
+                showStatus(`Failed to save data: ${error.message}`, "danger");
+            } finally {
+                submitBtn.disabled = false;
+                submitBtn.textContent = "Submit Registration";
+            }
+        });
+    </script>
+</body>
+
+</html>
